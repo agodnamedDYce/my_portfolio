@@ -71,3 +71,22 @@ body {
 .exampqa {
    color: var(--accent); text-decoration: none; 
 }
+
+.icon {
+  width: 18px;
+  height: 18px;
+  vertical-align: middle;
+  margin-right: 6px;
+  fill: currentColor; 
+}
+
+.cv-left a {
+  text-decoration: none;
+  color: #333;
+  display: inline-flex;
+  align-items: center;
+}
+
+.cv-left a:hover {
+  color: #0077ff; 
+}
