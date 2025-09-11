@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>David Yusuf — Gallery</title>
+  <link rel="stylesheet" href="./main.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <nav class="nav">
+        <div class="profile-upload">
+          <img src="./assets/IMG_4622 (2).jpg" alt="David Yusuf" class="profile-pic">
+        </div>
+        <ul class="nav-links">
+          <li><a href="./index.html">Portfolio</a></li>
+          <li><a href="./cv.html">CV</a></li>
+          <li><a href="./gallery.html" class="active">Gallery</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container section">
+    <section class="hero">
+      <h1 id="gallery-title">Project Gallery</h1>
+      <p id="gallery-description">Select a project to view images and videos.</p>
+    </section>
+
+    <section id="gallery" class="gallery">
+      <div id="gallery-content" class="media-grid">
+        <!-- JS will render media items here -->
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>© 2025 David Yusuf. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <div id="lightbox" class="lightbox" aria-hidden="true">
+    <button id="lightbox-close" class="lightbox-close">×</button>
+    <div id="lightbox-body" class="lightbox-body"></div>
+  </div>
+
+<script>
+  const params = new URLSearchParams(location.search);
+  const projectParam = params.get('project');
+
+  // Small helper to create DOM elements
+  function el(tag, attrs = {}, children = []) {
+    const e = document.createElement(tag);
+    Object.keys(attrs).forEach(k => {
+      if (k === 'class') e.className = attrs[k];
+      else if (k === 'html') e.innerHTML = attrs[k];
+      else e.setAttribute(k, attrs[k]);
+    });
+    (Array.isArray(children) ? children : [children]).forEach(c => {
+      if (!c) return;
+      e.appendChild(typeof c === 'string' ? document.createTextNode(c) : c);
+    });
+    return e;
+  }
+
+  // Lightbox controls
+  function openLightbox(node) {
+    const lb = document.getElementById('lightbox');
+    const body = document.getElementById('lightbox-body');
+    body.innerHTML = '';
+    body.appendChild(node);
+    lb.style.display = 'flex';
+    lb.setAttribute('aria-hidden', 'false');
+  }
+  function closeLightbox() {
+    const lb = document.getElementById('lightbox');
+    document.getElementById('lightbox-body').innerHTML = '';
+    lb.style.display = 'none';
+    lb.setAttribute('aria-hidden', 'true');
+  }
+  document.getElementById('lightbox-close').addEventListener('click', closeLightbox);
+  document.getElementById('lightbox').addEventListener('click', (e) => {
+    if (e.target.id === 'lightbox') closeLightbox();
+  });
+
+  // Fetch and render data
+  fetch('gallery.json')
+    .then(r => r.json())
+    .then(data => {
+      if (projectParam && data[projectParam]) {
+        renderProject(projectParam, data[projectParam]);
+      } else {
+        renderOverview(data);
+      }
+    })
+    .catch(err => {
+      document.getElementById('gallery-description').innerText = 'Failed to load gallery data.';
+      console.error(err);
+    });
+
+  function renderProject(slug, project) {
+    document.getElementById('gallery-title').innerText = project.title + ' — Gallery';
+    document.getElementById('gallery-description').innerText = project.description || '';
+    const c = document.getElementById('gallery-content');
+    c.innerHTML = '';
+
+    project.media.forEach((m) => {
+      const card = el('div', { class: 'gallery-card' });
+
+      if (m.type === 'image') {
+        const img = el('img', {
+          src: m.src,
+          alt: m.alt || project.title + ' image',
+          class: 'thumb'
+        });
+        img.addEventListener('click', () =>
+          openLightbox(
+            el('img', {
+              src: m.src,
+              alt: m.alt || '',
+              class: 'lightbox-media'
+            })
+          )
+        );
+        card.appendChild(img);
+
+      } else if (m.type === 'video') {
+        const video = el('video', {
+          controls: true,
+          src: m.src,
+          poster: m.poster || '',
+          class: 'video-player'
+        });
+        video.setAttribute('aria-label', m.alt || project.title + ' video');
+        card.appendChild(video);
+
+      } else if (m.type === 'iframe') {
+        const iframe = el('iframe', {
+          src: m.src,
+          frameborder: "0",
+          allow: "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture",
+          allowfullscreen: ""
+        });
+        iframe.style.width = '100%';
+        iframe.style.height = '220px';
+
+        iframe.addEventListener('click', () =>
+          openLightbox(
+            el('iframe', {
+              src: m.src,
+              frameborder: "0",
+              allow: "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture",
+              allowfullscreen: "",
+              class: "lightbox-media"
+            })
+          )
+        );
+
+        card.appendChild(iframe);
+      }
+
+      c.appendChild(card);
+    });
+  }
+
+  function renderOverview(data) {
+    document.getElementById('gallery-title').innerText = 'Project Gallery';
+    document.getElementById('gallery-description').innerText = 'Click a project from portfolio page or choose below.';
+    const c = document.getElementById('gallery-content');
+    c.innerHTML = '';
+    Object.keys(data).forEach(slug => {
+      const p = data[slug];
+      const card = el('article', { class: 'gallery-summary' });
+      card.appendChild(el('h3', {}, [p.title]));
+      card.appendChild(el('p', {}, [p.description || 'No description.']));
+      const link = el('a', { href: './gallery.html?project=' + slug, class: 'btn small' }, ['Open gallery']);
+      card.appendChild(link);
+
+      const first = p.media && p.media.find(m => m.type === 'image');
+      if (first) {
+        card.insertBefore(
+          el('img', { src: first.src, alt: first.alt || p.title + ' preview', class: 'preview-thumb' }),
+          card.firstChild
+        );
+      }
+      c.appendChild(card);
+    });
+  }
+</script>
+
+</body>
+</html>

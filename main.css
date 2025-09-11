@@ -99,3 +99,69 @@ body {
   fill: white; 
   filter: drop-shadow(0 0 1px white);
 }
+
+
+/* Gallery page */
+/* .gallery {
+  display: grid;
+  gap: 2rem;
+}
+
+.gallery h2 {
+  margin-bottom: 1rem;
+  font-size: 1.4rem;
+}
+
+.media-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+}
+
+.media-item {
+  background: #f3f3f3;
+  border: 1px dashed #bbb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 160px;
+  color: #555;
+  font-size: 0.9rem;
+  border-radius: 8px;
+}
+
+.gallery-items {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.gallery-card {
+  background: #1e1e1e;
+  padding: 1rem;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.gallery-card img,
+.gallery-card video {
+  max-width: 100%;
+  border-radius: 6px;
+} */
+
+/* gallery */
+.media-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; }
+.gallery-card { background: var(--card); border: 1px solid var(--line); border-radius: 8px; padding: 10px; display:flex; align-items:center; justify-content:center; min-height:160px; }
+.gallery-card img.thumb { max-width:100%; border-radius:6px; cursor:pointer; }
+.gallery-card video.video-player { max-width:100%; border-radius:6px; }
+.gallery-summary { background: var(--card); border:1px solid var(--line); padding:12px; border-radius:10px; display:flex; flex-direction:column; gap:8px; }
+.preview-thumb { width:100%; height:160px; object-fit:cover; border-radius:8px; margin-bottom:8px; }
+
+/* lightbox */
+.lightbox { position:fixed; inset:0; display:none; align-items:center; justify-content:center; background:rgba(0,0,0,0.75); z-index:9999; }
+.lightbox-body img.lightbox-media, .lightbox-body video { max-width:90vw; max-height:85vh; border-radius:8px; }
+.lightbox-close { position:absolute; top:18px; right:18px; background:transparent; color:var(--text); border:0; font-size:32px; cursor:pointer; }
+
+/* small button */
+.btn.small { display:inline-block; padding:8px 10px; border-radius:8px; background:var(--accent); color:#fff; text-decoration:none; font-weight:600; }
+

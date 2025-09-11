@@ -1,0 +1,28 @@
+{
+  "folklore-ai": {
+    "title": "AI Folklore Music Generator",
+    "description": "AI-generated African folktales with traditional-inspired music and voiceovers.",
+    "media": [
+      { "type": "image", "src": "./assets/gallery/FolkloreAI/cover.jpg", "alt": "Cover art" },
+      { "type": "image", "src": "./assets/gallery/FolkloreAI/FolkloreAI.jpg", "alt": "App screenshot" },
+      { "type": "iframe", "src": "https://www.youtube.com/embed/cSsYNfvaUzE", "poster": "./assets/gallery/FolkloreAI/cover.jpg", "alt": "code preview" },
+      { "type": "iframe", "src": "https://www.youtube.com/embed/jztJeHLF2Lw", "poster": "./assets/gallery/FolkloreAI/cover.jpg", "alt": "Demo video" }
+    ]
+  },
+  "exampqa": {
+    "title": "ExamPQA",
+    "description": "Exam practice platform for Nigerian universities.",
+    "media": [
+      { "type": "image", "src": "./assets/gallery/exampqa/exampqa.jpg", "alt": "ExamPQA landing page" },
+      { "type": "iframe", "src": "https://www.youtube.com/embed/QjoVqu1DXy4", "poster": "./assets/gallery/exampqa/exampqa.jpg", "alt": "Demo video" }
+    ]
+  },
+  "auralux": {
+    "title": "Auralux Boutique",
+    "description": "E-commerce demo for clothing & accessories.",
+    "media": [
+      { "type": "image", "src": "./assets/gallery/auralux/auralux2.jpg", "alt": "Auralux homepage" },
+      { "type": "iframe", "src": "https://www.youtube.com/embed/meaMUw6TJ6E", "provider": "./assets/gallery/auralux/auralux_home.jpg", "alt": "Auralux walkthrough" }
+    ]
+  }
+}
