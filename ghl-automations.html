@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>GHL Automations — Gallery</title>
+  <link rel="stylesheet" href="./main.css" />
+  <style>
+    .automation-hero h1::before { content: "⚡ "; }
+    .automation-hero h1::after { content: " ⏱️"; }
+    .automation-hero p { font-style: italic; color: var(--muted); }
+    .automation-card { position: relative; background: var(--card); border: 1px solid var(--line); border-radius: 12px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.3); transition: transform .2s ease, border-color .2s ease; }
+    .automation-card:hover { transform: translateY(-4px); border-color: var(--accent); }
+    .automation-card img { width: 100%; height: 200px; object-fit: cover; }
+    .automation-card h3 { margin: 12px; font-size: 18px; }
+    .automation-card p { margin: 0 12px 14px; color: var(--muted); font-size: 14px; }
+    .automation-icon { position: absolute; top: 10px; right: 10px; font-size: 22px; opacity: 0.8; }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <nav class="nav">
+        <div class="profile-upload">
+          <!-- EDIT: Wrapped image in a link to the homepage -->
+          <a href="./index.html">
+            <img src="./assets/IMG_4622 (2).jpg" alt="David Yusuf" class="profile-pic">
+          </a>
+        </div>
+        <!-- EDIT: Added ID to nav-links -->
+        <ul class="nav-links" id="nav-links">
+          <li><a href="./index.html">Portfolio</a></li>
+          <li><a href="./cv.html">CV</a></li>
+          <li><a href="./gallery.html">Gallery</a></li>
+          <li><a href="./ghl-automations.html" class="active">GHL Automations</a></li>
+        </ul>
+        <!-- EDIT: Added hamburger menu button -->
+        <button class="menu-toggle" id="menu-toggle" aria-label="Open navigation menu">☰</button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container section">
+    <section class="hero automation-hero">
+      <h1>GHL Automations</h1>
+      <p>Workflows that save time and maximize efficiency.</p>
+    </section>
+
+    <section class="media-grid">
+      <article class="automation-card">
+        <span class="automation-icon">🔄</span>
+        <img src="./assets/gallery/ghl/leads-nurture.jpg" alt="Lead Nurture Workflow">
+        <h3>Lead Nurture Workflow</h3>
+        <p>Automatically send emails + SMS to new leads while notifying the sales team.</p>
+      </article>
+      <article class="automation-card">
+        <span class="automation-icon">📅</span>
+        <img src="./assets/gallery/ghl/appointments.jpg" alt="Appointment Booking Workflow">
+        <h3>Appointment Booking</h3>
+        <p>Confirm meetings, send reminders, and sync to calendar without manual effort.</p>
+      </article>
+      <article class="automation-card">
+        <span class="automation-icon">📱</span>
+        <img src="./assets/gallery/ghl/missed-call.jpg" alt="Missed Call Text Back">
+        <h3>Missed Call Text Back</h3>
+        <p>Instantly reply to missed calls with a personalized SMS response.</p>
+      </article>
+      <article class="automation-card">
+        <span class="automation-icon">🚀</span>
+        <img src="./assets/gallery/ghl/onboarding.jpg" alt="Client Onboarding">
+        <h3>Client Onboarding</h3>
+        <p>Welcome new clients, send setup details, and assign tasks to your team automatically.</p>
+      </article>
+      <article class="automation-card">
+        <span class="automation-icon">♻️</span>
+        <img src="./assets/gallery/ghl/reengagement.jpg" alt="Re-engagement Campaign">
+        <h3>Re-engagement Campaign</h3>
+        <p>Re-activate cold leads with tailored offers and multi-channel follow-ups.</p>
+      </article>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>© 2025 David Yusuf. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- EDIT: Added script for hamburger menu -->
+  <script>
+    document.getElementById('menu-toggle').addEventListener('click', function() {
+      document.getElementById('nav-links').classList.toggle('active');
+    });
+  </script>
+</body>
+</html>

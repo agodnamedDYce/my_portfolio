@@ -14,13 +14,19 @@
     <div class="container">
       <nav class="nav">
         <div class="profile-upload">
-          <img src="./assets/IMG_4622 (2).jpg" alt="David Yusuf" class="profile-pic">
+          <!-- EDIT: Wrapped image in a link to the homepage -->
+          <a href="./index.html">
+            <img src="./assets/IMG_4622 (2).jpg" alt="David Yusuf" class="profile-pic">
+          </a>
         </div>
-        <ul class="nav-links">
+        <!-- EDIT: Added ID to nav-links and included GHL Automations link -->
+        <ul class="nav-links" id="nav-links">
           <li><a href="./index.html">Portfolio</a></li>
           <li><a href="./cv.html" class="active">CV</a></li>
           <li><a href="./gallery.html">Gallery</a></li>
         </ul>
+        <!-- EDIT: Added hamburger menu button -->
+        <button class="menu-toggle" id="menu-toggle" aria-label="Open navigation menu">☰</button>
       </nav>
     </div>
   </header>
@@ -36,48 +42,15 @@
         <div class="cv-container">
           <div class="cv-left">
               <h3>Contact Information</h3>
-              <p>
-                <a href="#">
-                  <img src="./assets/icons/64px-Faenza-avatar-default.svg.png" alt="Profile Icon" class="icon">David Yusuf
-                </a>
-              </p>
-              <p>
-                <a href="mailto:nwahayusuf@gmail.com">
-                  <img src="./assets/icons/Logo_Gmail_(2015-2020).svg" alt="Email Icon" class="icon"> nwahayusuf@gmail.com
-                </a>
-              </p>
-              <p>
-                <a href="https://wa.me/2348116005891" target="_blank">
-                  <img src="./assets/icons/WhatsApp.svg" alt="WhatsApp Icon" class="icon"> +2348116005891
-                </a>
-            </p>
-               <p>
-                <a href="#">
-                  <img src="./assets/icons/Pinpoint.svg" alt="Location Icon" class="icon">Zaria, Kaduna State, Nigeria
-                </a>
-              </p>
-              <p>
-                <a href="https://github.com/agodnamedDYce" target="_blank">
-                  <img src="./assets/icons/1024px-Octicons-mark-github.svg.png" alt="Github Icon" class="briefcase">agodnamedDYce
-                </a></p>
-              <p>
-                <a href="https://portfolio-eight-omega-29.vercel.app/" target="_blank">
-                  <img src="./assets/icons/Noun_Project_Briefcase_icon_693680.svg" alt="Briefcase Icon" class="briefcase">View Portfolio
-                </a>
-              </p>
+              <p><a href="#"><img src="./assets/icons/64px-Faenza-avatar-default.svg.png" alt="Profile Icon" class="icon">David Yusuf</a></p>
+              <p><a href="mailto:nwahayusuf@gmail.com"><img src="./assets/icons/Logo_Gmail_(2015-2020).svg" alt="Email Icon" class="icon"> nwahayusuf@gmail.com</a></p>
+              <p><a href="https://wa.me/2348116005891" target="_blank"><img src="./assets/icons/WhatsApp.svg" alt="WhatsApp Icon" class="icon"> +2348116005891</a></p>
+              <p><a href="#"><img src="./assets/icons/Pinpoint.svg" alt="Location Icon" class="icon">Zaria, Kaduna State, Nigeria</a></p>
+              <p><a href="https://github.com/agodnamedDYce" target="_blank"><img src="./assets/icons/1024px-Octicons-mark-github.svg.png" alt="Github Icon" class="briefcase">agodnamedDYce</a></p>
+              <p><a href="https://portfolio-eight-omega-29.vercel.app/" target="_blank"><img src="./assets/icons/Noun_Project_Briefcase_icon_693680.svg" alt="Briefcase Icon" class="briefcase">View Portfolio</a></p>
             </div>
           </div>
-        </section>
-
-
-    <!-- <section>
-      <h2>Contact Information</h2>
-      <p>Email: <a href="mailto:nwahayusuf@gmail.com">nwahayusuf@gmail.com</a></p>
-      <p>Phone/WhatsApp: <a href="tel:+2348116005891">+234 811 600 5891</a></p>
-      
-      <p>GitHub: <a href="https://github.com/agodnamedDYce" target="_blank">github.com/agodnamedDYce</a></p>
-      <p>Portfolio: <a href="https://portfolio-eight-omega-29.vercel.app/" target="_blank">portfolio-eight-omega-29.vercel.app</a></p>
-    </section> -->
+    </section>
 
     <section>
       <h2>Profile</h2>
@@ -92,7 +65,8 @@
 
     <section>
       <h2>Education</h2>
-      <p><strong>B.Eng. Computer Engineering (Final Year)</strong><br>
+      <p><strong>B.Eng. Computer Engineering (Final Year )</strong>  
+
       Ahmadu Bello University, Zaria, Nigeria · Expected 2025</p>
     </section>
 
@@ -129,7 +103,7 @@
         <article class="card">
           <h3>Auralux Boutique</h3>
           <p>Online clothing and accesories store to help clothing business owners with easy access to clientele and offer a seamless shopping experience to users.</p>
-          <div class="links"><a href="./gallery.html?project=clothing" >Gallery</a></div>
+          <div class="links"><a href="./gallery.html?project=auralux" >Gallery</a></div>
         </article>
         <article class="card">
           <h3>E-commerce Backend System</h3>
@@ -149,10 +123,6 @@
           <p>Delivery platform connecting farmers to customers with order tracking and route management.</p>
           <div class="links"><a href="https://agro-connect-hub-link-main.vercel.app/">Demo</a></div>
         </article>
-        <!-- <article class="card">
-          <h3>MusicBeat AI</h3>
-          <p>Created a music production tool generating beats and melodies from text prompts using AI models.</p>
-        </article> -->
       </div>
     </section>
 
@@ -172,5 +142,12 @@
       <p>© 2025 David Yusuf. All rights reserved.</p>
     </div>
   </footer>
+
+  <!-- EDIT: Added script for hamburger menu -->
+  <script>
+    document.getElementById('menu-toggle' ).addEventListener('click', function() {
+      document.getElementById('nav-links').classList.toggle('active');
+    });
+  </script>
 </body>
 </html>

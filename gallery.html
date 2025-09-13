@@ -11,13 +11,20 @@
     <div class="container">
       <nav class="nav">
         <div class="profile-upload">
-          <img src="./assets/IMG_4622 (2).jpg" alt="David Yusuf" class="profile-pic">
+          <!-- EDIT: Wrapped image in a link to the homepage -->
+          <a href="./index.html">
+            <img src="./assets/IMG_4622 (2).jpg" alt="David Yusuf" class="profile-pic">
+          </a>
         </div>
-        <ul class="nav-links">
+        <!-- EDIT: Added ID to nav-links -->
+        <ul class="nav-links" id="nav-links">
           <li><a href="./index.html">Portfolio</a></li>
           <li><a href="./cv.html">CV</a></li>
           <li><a href="./gallery.html" class="active">Gallery</a></li>
+          <li><a href="./ghl-automations.html">GHL Automations</a></li>
         </ul>
+        <!-- EDIT: Added hamburger menu button -->
+        <button class="menu-toggle" id="menu-toggle" aria-label="Open navigation menu">☰</button>
       </nav>
     </div>
   </header>
@@ -46,11 +53,21 @@
     <div id="lightbox-body" class="lightbox-body"></div>
   </div>
 
+<!-- EDIT: Combined hamburger and gallery scripts into one block -->
 <script>
+  // --- Hamburger Menu Logic ---
+  document.addEventListener('DOMContentLoaded', () => {
+    const menuToggle = document.getElementById('menu-toggle');
+    const navLinks = document.getElementById('nav-links');
+    if (menuToggle && navLinks) {
+      menuToggle.addEventListener('click', () => navLinks.classList.toggle('active'));
+    }
+  });
+
+  // --- Gallery & Lightbox Logic ---
   const params = new URLSearchParams(location.search);
   const projectParam = params.get('project');
 
-  // Small helper to create DOM elements
   function el(tag, attrs = {}, children = []) {
     const e = document.createElement(tag);
     Object.keys(attrs).forEach(k => {
@@ -65,7 +82,6 @@
     return e;
   }
 
-  // Lightbox controls
   function openLightbox(node) {
     const lb = document.getElementById('lightbox');
     const body = document.getElementById('lightbox-body');
@@ -74,6 +90,7 @@
     lb.style.display = 'flex';
     lb.setAttribute('aria-hidden', 'false');
   }
+
   function closeLightbox() {
     const lb = document.getElementById('lightbox');
     document.getElementById('lightbox-body').innerHTML = '';
@@ -85,7 +102,6 @@
     if (e.target.id === 'lightbox') closeLightbox();
   });
 
-  // Fetch and render data
   fetch('gallery.json')
     .then(r => r.json())
     .then(data => {
@@ -105,62 +121,22 @@
     document.getElementById('gallery-description').innerText = project.description || '';
     const c = document.getElementById('gallery-content');
     c.innerHTML = '';
-
     project.media.forEach((m) => {
       const card = el('div', { class: 'gallery-card' });
-
       if (m.type === 'image') {
-        const img = el('img', {
-          src: m.src,
-          alt: m.alt || project.title + ' image',
-          class: 'thumb'
-        });
-        img.addEventListener('click', () =>
-          openLightbox(
-            el('img', {
-              src: m.src,
-              alt: m.alt || '',
-              class: 'lightbox-media'
-            })
-          )
-        );
+        const img = el('img', { src: m.src, alt: m.alt || project.title + ' image', class: 'thumb' });
+        img.addEventListener('click', () => openLightbox(el('img', { src: m.src, alt: m.alt || '', class: 'lightbox-media' })));
         card.appendChild(img);
-
       } else if (m.type === 'video') {
-        const video = el('video', {
-          controls: true,
-          src: m.src,
-          poster: m.poster || '',
-          class: 'video-player'
-        });
+        const video = el('video', { controls: true, src: m.src, poster: m.poster || '', class: 'video-player' });
         video.setAttribute('aria-label', m.alt || project.title + ' video');
         card.appendChild(video);
-
       } else if (m.type === 'iframe') {
-        const iframe = el('iframe', {
-          src: m.src,
-          frameborder: "0",
-          allow: "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture",
-          allowfullscreen: ""
-        });
+        const iframe = el('iframe', { src: m.src, frameborder: "0", allow: "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture", allowfullscreen: "" });
         iframe.style.width = '100%';
         iframe.style.height = '220px';
-
-        iframe.addEventListener('click', () =>
-          openLightbox(
-            el('iframe', {
-              src: m.src,
-              frameborder: "0",
-              allow: "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture",
-              allowfullscreen: "",
-              class: "lightbox-media"
-            })
-          )
-        );
-
         card.appendChild(iframe);
       }
-
       c.appendChild(card);
     });
   }
@@ -173,17 +149,13 @@
     Object.keys(data).forEach(slug => {
       const p = data[slug];
       const card = el('article', { class: 'gallery-summary' });
-      card.appendChild(el('h3', {}, [p.title]));
-      card.appendChild(el('p', {}, [p.description || 'No description.']));
+      card.appendChild(el('h3', {}, p.title));
+      card.appendChild(el('p', {}, p.description || 'No description.'));
       const link = el('a', { href: './gallery.html?project=' + slug, class: 'btn small' }, ['Open gallery']);
       card.appendChild(link);
-
       const first = p.media && p.media.find(m => m.type === 'image');
       if (first) {
-        card.insertBefore(
-          el('img', { src: first.src, alt: first.alt || p.title + ' preview', class: 'preview-thumb' }),
-          card.firstChild
-        );
+        card.insertBefore(el('img', { src: first.src, alt: first.alt || p.title + ' preview', class: 'preview-thumb' }), card.firstChild);
       }
       c.appendChild(card);
     });

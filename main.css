@@ -23,6 +23,9 @@ body {
 .nav-links { list-style: none; display: flex; gap: 18px; margin: 0; padding: 0; }
 .nav-links a { color: var(--muted); text-decoration: none; padding: 8px 10px; border-radius: 10px; }
 .nav-links a:hover, .nav-links a:focus { color: var(--text); background: var(--line); }
+/* EDIT: Added style for the active navigation link */
+.nav-links a.active { color: var(--accent); font-weight: 600; }
+
 
 .hero { text-align: center; padding: 48px 0 32px; }
 .hero h1 { font-size: clamp(28px, 4vw, 48px); margin: 8px 0 6px; }
@@ -61,15 +64,10 @@ body {
 
 .site-footer { border-top: 1px solid var(--line); padding: 22px 0; color: var(--muted); text-align: center; margin-top: 24px; }
 
-@media (max-width: 640px) {
-  .nav-links { display: none; }
-  .hero-cta { flex-direction: column; }
-}
-
 .profile-upload img { width: 120px; height: 120px; border-radius: 50%; object-fit: cover; margin-bottom: 1em; }
 
 .exampqa {
-   color: var(--accent); text-decoration: none; 
+   color: var(--accent); text-decoration: none;
 }
 
 .icon {
@@ -77,7 +75,7 @@ body {
   height: 20px;
   vertical-align: middle;
   margin-right: 6px;
-  fill: currentColor; 
+  fill: currentColor;
 }
 
 .cv-left a {
@@ -88,7 +86,7 @@ body {
 }
 
 .cv-left a:hover {
-  color: #0077ff; 
+  color: #0077ff;
 }
 
 .briefcase {
@@ -96,58 +94,10 @@ body {
   height: 20px;
   vertical-align: middle;
   margin-right: 6px;
-  fill: white; 
+  fill: white;
   filter: drop-shadow(0 0 1px white);
 }
 
-
-/* Gallery page */
-/* .gallery {
-  display: grid;
-  gap: 2rem;
-}
-
-.gallery h2 {
-  margin-bottom: 1rem;
-  font-size: 1.4rem;
-}
-
-.media-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 1rem;
-}
-
-.media-item {
-  background: #f3f3f3;
-  border: 1px dashed #bbb;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 160px;
-  color: #555;
-  font-size: 0.9rem;
-  border-radius: 8px;
-}
-
-.gallery-items {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 1.5rem;
-}
-
-.gallery-card {
-  background: #1e1e1e;
-  padding: 1rem;
-  border-radius: 8px;
-  text-align: center;
-}
-
-.gallery-card img,
-.gallery-card video {
-  max-width: 100%;
-  border-radius: 6px;
-} */
 
 /* gallery */
 .media-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; }
@@ -165,3 +115,56 @@ body {
 /* small button */
 .btn.small { display:inline-block; padding:8px 10px; border-radius:8px; background:var(--accent); color:#fff; text-decoration:none; font-weight:600; }
 
+img, video {
+  max-width: 100%;
+  height: auto;
+}
+
+/* EDIT: Added styles for the hamburger menu button */
+.menu-toggle {
+  display: none; /* Hidden by default on desktop */
+  font-size: 24px;
+  cursor: pointer;
+  color: var(--text);
+  background: none;
+  border: none;
+  z-index: 1001; /* Ensure it's above other nav elements */
+}
+
+/* EDIT: Media query for mobile view */
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: block; /* Show the hamburger button on mobile */
+  }
+
+  .nav-links {
+    display: none; /* Hide the nav links by default on mobile */
+    flex-direction: column;
+    gap: 12px;
+    background: var(--card);
+    padding: 24px;
+    position: absolute;
+    top: 65px; /* Position below the header */
+    right: 5%; /* Align with container padding */
+    width: 90%;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+  }
+
+  .nav-links.active {
+    display: flex; /* Show the nav links when the menu is active */
+  }
+
+  .hero-cta {
+    flex-direction: column;
+  }
+
+  .media-grid {
+    grid-template-columns: 1fr; /* one card per row on small screens */
+  }
+
+  .automation-card img {
+    height: auto; /* don’t force fixed height on mobile */
+  }
+}

@@ -13,10 +13,15 @@
   <header class="site-header">
     <div class="container">
       <nav class="nav">
-            <div class="profile-upload">
-              <img src="./assets/IMG_4622 (2).jpg" alt="david_yusuf" class="profile-pic">
-            </div>
-        <ul class="nav-links">
+        <div class="profile-upload">
+          <!-- EDIT: Wrapped image in a link to the homepage -->
+          <a href="./index.html">
+            <img src="./assets/IMG_4622 (2).jpg" alt="david_yusuf" class="profile-pic">
+          </a>
+        </div>
+        <!-- EDIT: Added ID to nav-links and updated links for consistency -->
+        <ul class="nav-links" id="nav-links">
+          <li><a href="./index.html" class="active">Portfolio</a></li>
           <li><a href="#about">About</a></li>
           <li><a href="#projects">Projects</a></li>
           <li><a href="#skills">Skills</a></li>
@@ -24,6 +29,8 @@
           <li><a href="./gallery.html">Gallery</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
+        <!-- EDIT: Added hamburger menu button -->
+        <button class="menu-toggle" id="menu-toggle" aria-label="Open navigation menu">☰</button>
       </nav>
       <div class="hero">
         <h1>David Yusuf</h1>
@@ -56,7 +63,6 @@
             <a href="./gallery.html?project=folklore-ai">Gallery</a>
             <a href="https://github.com/agodnamedDYce/FolkloreAI">Repo</a></div>
         </article>
-
         <article class="card">
           <h3>ExamPQA</h3>
           <p>Online exam practice for Nigerian universities with login/subscription control and auto-grading.</p>
@@ -66,52 +72,39 @@
             <a href="https://exampqa.com.ng/wp66">Live</a>
           </div>
         </article>
-
         <article class="card">
           <h3>Auralux Boutique</h3>
           <p>Online clothing and accesories store to help clothing business owners with easy access to clientele and offer a seamless shopping experience to users.</p>
           <ul class="tags"><li>HTML</li><li>CSS</li><li>JS</li></ul>
           <div class="links">
-            <a href="./gallery.html?project=clothing" >Gallery</a>
+            <a href="./gallery.html?project=auralux" >Gallery</a>
             <a href="https://github.com/agodnamedDYce/auralux_boutique">Repo</a>
           </div>
         </article>
-      
         <article class="card">
           <h3>Farm-to-Table Logistics</h3>
           <p>Delivery platform connecting farmers to customers with order tracking and route management.</p>
           <ul class="tags"><li>React</li><li>Superbase</li><li>Maps</li></ul>
           <div class="links"><a href="https://agro-connect-hub-link-main.vercel.app/">Demo</a></div>
         </article>
-
         <article class="card">
           <h3>RSIVC Virtual Fellowship</h3>
           <p>Community hub for engineering inspiration with curated talks, topics, and events.</p>
           <ul class="tags"><li>CMS</li><li>Community</li></ul>
           <div class="links"><a href="#">Live</a></div>
         </article>
-
         <article class="card">
           <h3>P2P Crypto Exchange</h3>
           <p>Custom-coded P2P trading flows with escrow logic and dispute handling.</p>
           <ul class="tags"><li>Node</li><li>PostgreSQL</li><li>Security</li></ul>
           <div class="links"><a href="#">Spec</a><a href="#">Repo</a></div>
         </article>
-
         <article class="card">
           <h3>Upwork Success Course</h3>
           <p>Step-by-step curriculum for winning clients and scaling freelance income.</p>
           <ul class="tags"><li>Curriculum</li><li>LMS</li></ul>
           <div class="links"><a href="#">Preview</a></div>
         </article>
-
-        <!-- <article class="card">
-          <h3>Flow Story Animator</h3>
-          <p>Scene-by-scene animation pipeline for African short stories with cinematic cues.</p>
-          <ul class="tags"><li>Animation</li><li>Storyboarding</li></ul>
-          <div class="links"><a href="#">Demo</a><a href="#">Docs</a></div>
-        </article> -->
-
       </div>
     </section>
 
@@ -133,7 +126,7 @@
           <li>Testing: Jest, Postman</li>
           <li>Real-time: WebSockets</li>
           <li>Messaging: MQTT</li>
-          <li>Data: Pandas/NumPy (beginner)</li>
+          <li>Data: Pandas/NumPy (beginner )</li>
           <li>Prompt Engineering</li>
         </ul>
       </div>
@@ -156,9 +149,9 @@
         <p>Email: <a href="mailto:nwahayusuf@gmail.com">nwahayusuf@gmail.com</a></p>
         <p>Location: Nigeria</p>
         <div class="social">
-          <a href="github.com/agodnamedDYce" aria-label="GitHub">GitHub</a>
-          <a href="linkedin.com/david_yusuf" aria-label="LinkedIn">LinkedIn</a>
-          <a href="x.com/agodnamedDYce" aria-label="X">X</a>
+          <a href="https://github.com/agodnamedDYce" aria-label="GitHub">GitHub</a>
+          <a href="https://linkedin.com/in/david-yusuf-aab0b2162/" aria-label="LinkedIn">LinkedIn</a>
+          <a href="https://x.com/agodnamedDYce" aria-label="X">X</a>
           <a href="#" aria-label="YouTube">YouTube</a>
         </div>
       </div>
@@ -170,5 +163,12 @@
       <p>© 2025 David Yusuf. All rights reserved.</p>
     </div>
   </footer>
+
+  <!-- EDIT: Added script for hamburger menu -->
+  <script>
+    document.getElementById('menu-toggle' ).addEventListener('click', function() {
+      document.getElementById('nav-links').classList.toggle('active');
+    });
+  </script>
 </body>
 </html>
