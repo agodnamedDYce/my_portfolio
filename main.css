@@ -24,7 +24,7 @@ html {
 }
 
 body {
-  background-image: url("./assets/matt-gross-9aCkSl6YcXg-unsplash.jpg");
+  background-image: url("./assets/matt-gross-9aCkSl6YcXg-unsplash.webp");
   background-size: cover;
   background-repeat: repeat;
   background-attachment: fixed;
@@ -190,7 +190,7 @@ body {
   position: absolute;
   inset: 0;
   background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
-    url("./assets/cat-han-W_5Eakb1598-unsplash.jpg") center center / cover
+    url("./assets/cat-han-W_5Eakb1598-unsplash.webp") center center / cover
       no-repeat;
   z-index: 0;
 }
@@ -453,7 +453,7 @@ body {
   position: absolute;
   inset: 0;
   background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
-    url("./assets/cat-han-W_5Eakb1598-unsplash.jpg") center center / cover
+    url("./assets/cat-han-W_5Eakb1598-unsplash.webp") center center / cover
       no-repeat;
   background-attachment: fixed;
   z-index: -1;
@@ -756,7 +756,7 @@ body {
   position: absolute;
   inset: 0;
   background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
-    url("./assets/cat-han-W_5Eakb1598-unsplash.jpg") center center / cover
+    url("./assets/cat-han-W_5Eakb1598-unsplash.webp") center center / cover
       no-repeat;
   z-index: -1; /* Place the background behind the content */
   background-attachment: fixed;
